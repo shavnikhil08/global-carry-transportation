@@ -1,0 +1,176 @@
+.page-header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+  padding: 100px 0 60px 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.header-content h1 {
+  color: #ffffff;
+  font-size: 42px;
+  margin: 16px 0;
+}
+
+.header-content p {
+  color: #cbd5e1;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Alternating Rows Details */
+.details-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.detail-row.row-reverse {
+  grid-template-columns: 1fr 1.1fr;
+}
+
+.detail-row.row-reverse .detail-text {
+  grid-column: 2;
+}
+
+.detail-row.row-reverse .detail-image {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+@media (max-width: 992px) {
+  .detail-row {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+  .detail-row.row-reverse .detail-text {
+    grid-column: auto;
+  }
+  .detail-row.row-reverse .detail-image {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+.service-section-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.icon-blue {
+  color: var(--accent-color);
+}
+
+.icon-cyan {
+  color: #0891b2;
+}
+
+.icon-green {
+  color: var(--emerald-color);
+}
+
+.icon-red {
+  color: #dc2626;
+}
+
+.detail-text h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.detail-text p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.feature-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.feature-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--primary-medium);
+  font-weight: 500;
+}
+
+.check-bullet {
+  color: var(--emerald-color);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.detail-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+/* Specialized services grid */
+.specialized-services {
+  background-color: var(--bg-tertiary);
+}
+
+.special-card {
+  background-color: #ffffff;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.special-icon {
+  font-size: 40px;
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+.special-card h4 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.special-card p {
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* FAQ CTA card */
+.services-cta {
+  text-align: center;
+}
+
+.cta-box {
+  background: #ffffff;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.cta-box h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.cta-box p {
+  color: var(--text-muted);
+  font-size: 16px;
+  max-width: 650px;
+  margin: 0 auto 32px auto;
+}

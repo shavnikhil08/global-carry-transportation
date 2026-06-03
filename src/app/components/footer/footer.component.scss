@@ -1,0 +1,180 @@
+.footer {
+  background-color: var(--primary-dark);
+  color: #94a3b8;
+  padding: 70px 0 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 14px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 48px;
+  padding-bottom: 50px;
+}
+
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.footer-brand .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 20px;
+}
+
+.footer-brand .logo-icon {
+  font-size: 36px;
+  color: var(--border-focus);
+}
+
+.footer-brand .logo-text {
+  color: #ffffff;
+}
+
+.footer-brand .highlight {
+  color: var(--border-focus);
+}
+
+.brand-tagline {
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.footer-regions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.region-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.contact-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #f1f5f9;
+}
+
+.contact-item .icon {
+  color: var(--border-focus);
+  font-size: 20px;
+}
+
+.footer-links h3, .footer-support h3 {
+  color: #ffffff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.footer-links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links ul a {
+  color: #94a3b8;
+  transition: var(--transition-fast);
+}
+
+.footer-links ul a:hover {
+  color: #ffffff;
+  padding-left: 4px;
+}
+
+.footer-support p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.badge-emerald-dark {
+  background-color: rgba(5, 150, 105, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(5, 150, 105, 0.3);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 13px;
+}
+
+.badge-emerald-dark span {
+  font-size: 18px;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 0;
+  margin-top: 20px;
+  color: #64748b;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bottom-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.bottom-links a {
+  color: #64748b;
+}
+
+.bottom-links a:hover {
+  color: #cbd5e1;
+}
+
+@media (max-width: 640px) {
+  .bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}

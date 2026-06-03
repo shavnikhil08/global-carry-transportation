@@ -1,0 +1,6 @@
+/* Root App layout container spacing */
+.main-content {
+  min-height: calc(100vh - 80px - 380px); /* 100vh minus header (80px) and approximate footer (380px) */
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,167 @@
+<div class="contact-page">
+  <!-- Page Header Banner -->
+  <section class="page-header">
+    <div class="container header-content">
+      <div class="badge badge-blue">Get In Touch</div>
+      <h1>Contact Us & FAQs</h1>
+      <p>We are available 24/7. Reach out via email, phone, or submit a message to our dispatch desk.</p>
+    </div>
+  </section>
+
+  <!-- Main Contact Section -->
+  <section class="contact-details-section section-padding">
+    <div class="container contact-grid">
+      
+      <!-- Contact Form Box -->
+      <div class="contact-form-box glass-card">
+        @if (messageSent()) {
+          <div class="sent-success animate-fade-in-up">
+            <span class="material-symbols-outlined success-icon">check_circle</span>
+            <h3>Message Sent Successfully!</h3>
+            <p>We have routed your request to the regional dispatch coordinator. A logistics agent will call or email you within 15 minutes.</p>
+            <button (click)="resetForm()" class="btn-primary">Send Another Message</button>
+          </div>
+        } @else {
+          <h3>Send A Message</h3>
+          <p class="form-instructions">Have a quick question about routes or operations? Fill this out and we'll reply immediately.</p>
+          
+          <form [formGroup]="contactForm" (ngSubmit)="sendMessage()">
+            <div class="form-group">
+              <label class="form-label" for="senderName">Your Name <span class="req">*</span></label>
+              <input type="text" id="senderName" formControlName="senderName" class="form-control" placeholder="Jane Smith" />
+              @if (hasFieldError('senderName')) {
+                <span class="field-error">Name is required</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="senderEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="senderEmail" formControlName="senderEmail" class="form-control" placeholder="jane&#64;company.com" />
+              @if (hasFieldError('senderEmail')) {
+                <span class="field-error">Valid email is required</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject <span class="req">*</span></label>
+              <input type="text" id="subject" formControlName="subject" class="form-control" placeholder="e.g. Schedule pickup, storage rate inquiry" />
+              @if (hasFieldError('subject')) {
+                <span class="field-error">Subject is required</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message / Details <span class="req">*</span></label>
+              <textarea id="message" formControlName="message" class="form-control" rows="4" placeholder="Type your message here..."></textarea>
+              @if (hasFieldError('message')) {
+                <span class="field-error">Message details are required</span>
+              }
+            </div>
+
+            <button type="submit" class="btn-primary" [disabled]="contactForm.invalid || isSending()">
+              {{ isSending() ? 'Sending...' : 'Send Message' }}
+              <span class="material-symbols-outlined">send</span>
+            </button>
+          </form>
+        }
+      </div>
+
+      <!-- Contact Information & Map -->
+      <div class="contact-info-panel">
+        <div class="info-card glass-card">
+          <h3>Office & Dispatch Center</h3>
+          <p class="office-desc">Our offices and hazmat facilities are active 24/7. Visitors are welcome by appointment with proper clearance.</p>
+          
+          <div class="info-details">
+            <div class="info-item">
+              <span class="material-symbols-outlined info-icon">location_on</span>
+              <div>
+                <strong>Headquarters</strong>
+                <p>8920 Express Logistics Pkwy, Suite 400, Chicago, IL 60609</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="material-symbols-outlined info-icon">phone_in_talk</span>
+              <div>
+                <strong>Phone Support</strong>
+                <p>General Desk: +1 (800) 555-0199<br>24/7 Dispatch: +1 (800) 555-0188</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="material-symbols-outlined info-icon">mail</span>
+              <div>
+                <strong>Email Addresses</strong>
+                <p>Sales: sales&#64;nikhiltransport.com<br>Support: support&#64;nikhiltransport.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mock Map Graphic -->
+        <div class="map-card glass-card">
+          <div class="map-header">
+            <span class="material-symbols-outlined">map</span>
+            <span>Active Coverage Map</span>
+          </div>
+          <div class="map-simulation">
+            <!-- SVG map graphic representing routes -->
+            <svg viewBox="0 0 400 200" class="map-svg">
+              <!-- Custom path lines -->
+              <path d="M50 150 Q 150 50 250 100 T 350 40" fill="none" stroke="rgba(2, 132, 199, 0.4)" stroke-width="3" stroke-dasharray="5,5" />
+              <path d="M50 150 Q 120 180 220 120 T 380 160" fill="none" stroke="rgba(5, 150, 105, 0.3)" stroke-width="2" />
+              <!-- Cities nodes -->
+              <circle cx="50" cy="150" r="6" fill="var(--accent-color)" />
+              <text x="45" y="135" fill="var(--primary-dark)" font-size="10" font-weight="bold">Seattle</text>
+
+              <circle cx="150" cy="80" r="6" fill="var(--accent-color)" />
+              <text x="145" y="65" fill="var(--primary-dark)" font-size="10" font-weight="bold">Chicago Hub</text>
+
+              <circle cx="250" cy="100" r="6" fill="var(--emerald-color)" />
+              <text x="245" y="118" fill="var(--primary-dark)" font-size="10" font-weight="bold">Dallas Depot</text>
+
+              <circle cx="350" cy="40" r="6" fill="var(--accent-color)" />
+              <text x="310" y="32" fill="var(--primary-dark)" font-size="10" font-weight="bold">New York</text>
+
+              <circle cx="380" cy="160" r="6" fill="var(--accent-color)" />
+              <text x="340" y="180" fill="var(--primary-dark)" font-size="10" font-weight="bold">Miami</text>
+            </svg>
+          </div>
+          <div class="map-footer-labels">
+            <span class="dot-legend blue"></span> Primary Route lanes
+            <span class="dot-legend red"></span> Hazmat Facilities
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section section-padding">
+    <div class="container">
+      <div class="badge badge-emerald">FAQ Support</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Find immediate answers to standard questions regarding insurance, cargo limitations, and hazmat regulations.</p>
+      
+      <div class="faq-accordion-list">
+        @for (faq of faqs; track faq.id) {
+          <div class="faq-item-card glass-card" [class.expanded]="expandedFaq() === faq.id" (click)="toggleFaq(faq.id)">
+            <div class="faq-question">
+              <h4>{{ faq.question }}</h4>
+              <span class="material-symbols-outlined expand-icon">
+                {{ expandedFaq() === faq.id ? 'expand_less' : 'expand_more' }}
+              </span>
+            </div>
+            @if (expandedFaq() === faq.id) {
+              <div class="faq-answer animate-fade-in-up">
+                <p>{{ faq.answer }}</p>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

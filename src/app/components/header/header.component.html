@@ -1,0 +1,45 @@
+<header class="header">
+  <div class="container nav-container">
+    <!-- Logo -->
+    <a routerLink="/" class="logo">
+      <span class="material-symbols-outlined logo-icon">local_shipping</span>
+      <span class="logo-text">Global <span class="highlight">Carry </span>Transportation</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="desktop-nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+      <a routerLink="/about" routerLinkActive="active">About Us</a>
+      <a routerLink="/services" routerLinkActive="active">Services</a>
+      <a routerLink="/quote" routerLinkActive="active">Request a Quote</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact Us</a>
+    </nav>
+
+    <!-- CTA Button (Desktop) -->
+    <div class="desktop-cta">
+      <a routerLink="/quote" class="nav-btn">
+        Get a Quote
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-toggle" (click)="toggleMenu()" aria-label="Toggle Navigation Menu">
+      <span class="material-symbols-outlined">
+        {{ isMenuOpen() ? 'close' : 'menu' }}
+      </span>
+    </button>
+  </div>
+
+  <!-- Mobile Dropdown Navigation -->
+  @if (isMenuOpen()) {
+    <div class="mobile-nav animate-fade-in-up">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a>
+      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About Us</a>
+      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+      <a routerLink="/quote" routerLinkActive="active" (click)="closeMenu()">Request a Quote</a>
+      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact Us</a>
+      <a routerLink="/quote" class="mobile-nav-btn" (click)="closeMenu()">Get a Quote</a>
+    </div>
+  }
+</header>

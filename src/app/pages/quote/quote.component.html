@@ -1,0 +1,395 @@
+<div class="quote-page">
+  <!-- Header -->
+  <section class="page-header">
+    <div class="container header-content">
+      <div class="badge badge-blue">Request a Quote</div>
+      <h1>Get a Fast, Custom Quote</h1>
+      <p>Provide details about your cargo or transit route, and our sales team will draft a custom proposal.</p>
+    </div>
+  </section>
+
+  <!-- Main Quote Section -->
+  <section class="quote-form-section section-padding">
+    <div class="container">
+      <div class="quote-layout">
+        
+        <!-- Main Wizard Box -->
+        <div class="wizard-box glass-card">
+          @if (currentStep() !== 'success' && currentStep() !== 'submitting') {
+            <!-- Wizard Steps Progress Bar -->
+            <div class="steps-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" [style.width]="progressPercent() + '%'"></div>
+              </div>
+              <div class="steps-indicators">
+                <div class="step-indicator" [class.active]="currentStep() === 'contact'" [class.done]="isStepDone('contact')">
+                  <span class="indicator-num">1</span>
+                  <span class="indicator-label">Contact Info</span>
+                </div>
+                <div class="step-indicator" [class.active]="currentStep() === 'services'" [class.done]="isStepDone('services')">
+                  <span class="indicator-num">2</span>
+                  <span class="indicator-label">Service Type</span>
+                </div>
+                <div class="step-indicator" [class.active]="currentStep() === 'cargo'" [class.done]="isStepDone('cargo')">
+                  <span class="indicator-num">3</span>
+                  <span class="indicator-label">Cargo Details</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Panel -->
+            <form [formGroup]="quoteForm" (ngSubmit)="submitQuote()">
+              
+              <!-- STEP 1: CONTACT INFO -->
+              @if (currentStep() === 'contact') {
+                <div class="form-step-panel animate-fade-in-up">
+                  <h3>Step 1: Company & Contact Information</h3>
+                  <p class="step-instruction">Tell us who you are and where we can reach you to send the pricing proposal.</p>
+                  
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label" for="contactName">Contact Full Name <span class="req">*</span></label>
+                      <input type="text" id="contactName" formControlName="contactName" class="form-control" placeholder="John Doe" />
+                      @if (hasFieldError('contactName')) {
+                        <span class="field-error">Please enter your name</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="companyName">Company Name <span class="req">*</span></label>
+                      <input type="text" id="companyName" formControlName="companyName" class="form-control" placeholder="Logistics & Co." />
+                      @if (hasFieldError('companyName')) {
+                        <span class="field-error">Please enter your company name</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="email">Work Email Address <span class="req">*</span></label>
+                      <input type="email" id="email" formControlName="email" class="form-control" placeholder="john&#64;company.com" />
+                      @if (hasFieldError('email')) {
+                        <span class="field-error">Please enter a valid email</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="phone">Phone Number <span class="req">*</span></label>
+                      <input type="tel" id="phone" formControlName="phone" class="form-control" placeholder="+1 (555) 000-0000" />
+                      @if (hasFieldError('phone')) {
+                        <span class="field-error">Please enter your phone number</span>
+                      }
+                    </div>
+                  </div>
+
+                  <div class="wizard-footer">
+                    <div></div>
+                    <button type="button" class="btn-primary" (click)="goToNextStep('services')" [disabled]="isContactStepInvalid()">
+                      Next: Select Services
+                      <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 2: SELECT SERVICES -->
+              @if (currentStep() === 'services') {
+                <div class="form-step-panel animate-fade-in-up">
+                  <h3>Step 2: Select Services</h3>
+                  <p class="step-instruction">Choose the logistics and supply chain services you require. Select all that apply.</p>
+                  
+                  <div class="services-selector-grid">
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceFreight')?.value" (click)="toggleService('serviceFreight')">
+                      <span class="material-symbols-outlined select-icon">local_shipping</span>
+                      <div class="select-card-details">
+                        <h4>Road Freight Shipping</h4>
+                        <p>Full Truckload (FTL) or Less-Than-Truckload (LTL) transport.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceFreight')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceRefrigerated')?.value" (click)="toggleService('serviceRefrigerated')">
+                      <span class="material-symbols-outlined select-icon icon-cyan">ac_unit</span>
+                      <div class="select-card-details">
+                        <h4>Cold Chain Transport</h4>
+                        <p>Temperature-sensitive shipping with active monitors.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceRefrigerated')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceStepDeck')?.value" (click)="toggleService('serviceStepDeck')">
+                      <span class="material-symbols-outlined select-icon icon-blue">local_shipping</span>
+                      <div class="select-card-details">
+                        <h4>Step Deck Freight</h4>
+                        <p>Specialized transport for tall freight.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceStepDeck')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceFlatbed')?.value" (click)="toggleService('serviceFlatbed')">
+                      <span class="material-symbols-outlined select-icon icon-emerald">view_stream</span>
+                      <div class="select-card-details">
+                        <h4>Flatbed Shipping</h4>
+                        <p>Coast-to-coast deliveries with secure handling.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceFlatbed')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceConestoga')?.value" (click)="toggleService('serviceConestoga')">
+                      <span class="material-symbols-outlined select-icon icon-cyan">airport_shuttle</span>
+                      <div class="select-card-details">
+                        <h4>Conestoga Freight</h4>
+                        <p>Secure, covered flatbed transport.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceConestoga')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                  </div>
+
+                  @if (isNoServicesSelected()) {
+                    <span class="field-error center-error">Please select at least one service to proceed.</span>
+                  }
+
+                  <div class="wizard-footer">
+                    <button type="button" class="btn-secondary" (click)="goToPrevStep('contact')">
+                      <span class="material-symbols-outlined">arrow_back</span>
+                      Back
+                    </button>
+                    <button type="button" class="btn-primary" (click)="goToNextStep('cargo')" [disabled]="isNoServicesSelected()">
+                      Next: Cargo Specifications
+                      <span class="material-symbols-outlined">arrow_forward</span>
+                    </button>
+                  </div>
+                </div>
+              }
+
+              <!-- STEP 3: CARGO DETAILS -->
+              @if (currentStep() === 'cargo') {
+                <div class="form-step-panel animate-fade-in-up">
+                  <h3>Step 3: Cargo Details & Transit Route</h3>
+                  <p class="step-instruction">Provide weight, cargo type, origin, and destination details to help us estimate routing.</p>
+                  
+                  <div class="form-grid">
+                    <div class="form-group">
+                      <label class="form-label" for="originCity">Origin (City, State / ZIP) <span class="req">*</span></label>
+                      <input type="text" id="originCity" formControlName="originCity" class="form-control" placeholder="e.g. Chicago, IL 60609" />
+                      @if (hasFieldError('originCity')) {
+                        <span class="field-error">Origin location is required</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="destinationCity">Destination (City, State / ZIP) <span class="req">*</span></label>
+                      <input type="text" id="destinationCity" formControlName="destinationCity" class="form-control" placeholder="e.g. Dallas, TX 75201" />
+                      @if (hasFieldError('destinationCity')) {
+                        <span class="field-error">Destination location is required</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="cargoWeight">Estimated Weight (lbs) <span class="req">*</span></label>
+                      <input type="text" id="cargoWeight" formControlName="cargoWeight" class="form-control" placeholder="e.g. 15,000" />
+                      @if (hasFieldError('cargoWeight')) {
+                        <span class="field-error">Cargo weight is required</span>
+                      }
+                    </div>
+
+                    <div class="form-group">
+                      <label class="form-label" for="handlingUnit">Handling Unit Type <span class="req">*</span></label>
+                      <select id="handlingUnit" formControlName="handlingUnit" class="form-control">
+                        <option value="">-- Select Option --</option>
+                        <option value="Pallets">Pallets (Standard 48"x40")</option>
+                        <option value="Crates">Wooden Crates</option>
+                        <option value="Drums">Drums / Barrels</option>
+                        <option value="Loose">Loose Cargo / Boxes</option>
+                        <option value="Other">Other (Special Cargo)</option>
+                      </select>
+                      @if (hasFieldError('handlingUnit')) {
+                        <span class="field-error">Please select handling unit</span>
+                      }
+                    </div>
+
+                    <div class="form-group full-width-field">
+                      <label class="form-label" for="cargoDescription">Description of Cargo / Special Instructions</label>
+                      <textarea id="cargoDescription" formControlName="cargoDescription" class="form-control" rows="3" placeholder="e.g., Temperature needs to stay at 36°F, double-stackable pallets, liftgate required at delivery..."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="wizard-footer">
+                    <button type="button" class="btn-secondary" (click)="goToPrevStep('services')">
+                      <span class="material-symbols-outlined">arrow_back</span>
+                      Back
+                    </button>
+                    <button type="submit" class="btn-primary" [disabled]="quoteForm.invalid">
+                      Submit Request
+                      <span class="material-symbols-outlined">send</span>
+                    </button>
+                  </div>
+                </div>
+              }
+            </form>
+          }
+
+          <!-- SUBMITTING STATE -->
+          @if (currentStep() === 'submitting') {
+            <div class="loading-panel animate-fade-in-up">
+              <div class="spinner"></div>
+              <h3>Calculating Transit Options...</h3>
+              <p>Our routing desk is checking driver availability and scheduling local dispatch.</p>
+            </div>
+          }
+
+          <!-- SUCCESS PANEL -->
+          @if (currentStep() === 'success') {
+            <div class="success-panel animate-fade-in-up">
+              <div class="success-icon-wrapper">
+                <span class="material-symbols-outlined success-check">check_circle</span>
+              </div>
+              <h2>Quote Request Received!</h2>
+              <p class="success-ref">Your Reference ID: <strong class="ref-num">{{ generatedRef() }}</strong></p>
+              
+              <div class="success-details-card glass-card">
+                <h4>Submission Summary:</h4>
+                <p><strong>Contact:</strong> {{ quoteForm.value.contactName }} ({{ quoteForm.value.companyName }})</p>
+                <p><strong>Email:</strong> {{ quoteForm.value.email }} | <strong>Phone:</strong> {{ quoteForm.value.phone }}</p>
+                <p><strong>Route:</strong> {{ quoteForm.value.originCity }} to {{ quoteForm.value.destinationCity }}</p>
+                <p><strong>Cargo Info:</strong> {{ quoteForm.value.cargoWeight }} lbs ({{ quoteForm.value.handlingUnit }})</p>
+              </div>
+              
+              <p class="next-step-info">
+                Our sales desk has received your details. A logistics agent will reach out to you via email or phone within **15 minutes** with a complete rate sheet and scheduling draft.
+              </p>
+              
+              <button type="button" class="btn-primary" (click)="resetForm()">
+                Submit Another Quote
+                <span class="material-symbols-outlined">refresh</span>
+              </button>
+            </div>
+          }
+        </div>
+
+        <!-- Side Information Bar -->
+        <div class="side-info-bar">
+          <!-- Stats Panel inside Side Bar -->
+          <div class="sidebar-widget glass-card">
+            <h3>Our Logistics At A Glance</h3>
+            <p>Nikhil Transportation offers rapid deployment times and verified delivery logs across the country.</p>
+            
+            <div class="sidebar-stat-list">
+              <div class="sidebar-stat-item">
+                <span class="material-symbols-outlined widget-icon">verified</span>
+                <div>
+                  <strong>15-Minute Response</strong>
+                  <p>Our sales team works around the clock to provide fast estimates.</p>
+                </div>
+              </div>
+
+              <div class="sidebar-stat-item">
+                <span class="material-symbols-outlined widget-icon text-cyan">ac_unit</span>
+                <div>
+                  <strong>Cold Chain Certified</strong>
+                  <p>100% compliant refrigerated trailers with automatic alerts.</p>
+                </div>
+              </div>
+
+              <div class="sidebar-stat-item">
+                <span class="material-symbols-outlined widget-icon text-green">shield</span>
+                <div>
+                  <strong>Cargo Insured</strong>
+                  <p>Full comprehensive liability insurance covering all transit lanes.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer Feedback Section -->
+          <div class="sidebar-widget glass-card testimonial-widget">
+            <span class="material-symbols-outlined quote-mark">format_quote</span>
+            <p>"Getting a freight setup took just one call. They route our cargo to trailers seamlessly."</p>
+            <div class="testimonial-author">
+              <strong>- Director of Freight, V Logistics</strong>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- LOCAL STORAGE LOG DISPLAY SECTION -->
+      @if (savedQuotes().length > 0) {
+        <div class="saved-quotes-log glass-card animate-fade-in-up">
+          <div class="log-header">
+            <h3>Saved Quote Submissions (Stored Locally)</h3>
+            <button class="clear-btn" (click)="clearSavedQuotes()">
+              <span class="material-symbols-outlined">delete</span> Clear Log
+            </button>
+          </div>
+          <p class="log-desc">Below are the quote requests submitted on this browser (saved in <code>localStorage</code>).</p>
+          
+          <div class="table-container">
+            <table class="quotes-table">
+              <thead>
+                <tr>
+                  <th>Ref Number</th>
+                  <th>Date</th>
+                  <th>Company</th>
+                  <th>Contact</th>
+                  <th>Services</th>
+                  <th>Route</th>
+                  <th>Weight</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (quote of savedQuotes(); track quote.refNumber) {
+                  <tr>
+                    <td class="bold-ref">{{ quote.refNumber }}</td>
+                    <td>{{ quote.date }}</td>
+                    <td>{{ quote.company }}</td>
+                    <td>{{ quote.name }}</td>
+                    <td>
+                      <div class="badge-row">
+                        @for (svc of quote.services; track svc) {
+                          <span class="badge badge-blue small-badge">{{ svc }}</span>
+                        }
+                      </div>
+                    </td>
+                    <td>{{ quote.origin }} &rarr; {{ quote.destination }}</td>
+                    <td>{{ quote.weight }} lbs</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </div>
+      }
+
+    </div>
+  </section>
+</div>
