@@ -30,16 +30,20 @@
 .footer-brand .logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 24px;
   font-weight: 800;
   font-family: 'Outfit', sans-serif;
   margin-bottom: 20px;
 }
 
-.footer-brand .logo-icon {
-  font-size: 36px;
-  color: var(--border-focus);
+.footer-brand .footer-logo {
+  width: 50px;
+  height: auto;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 4px;
 }
 
 .footer-brand .logo-text {

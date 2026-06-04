@@ -29,12 +29,14 @@
 }
 
 .brand-logo {
-  width: 56px;
   height: 56px;
-  border-radius: 14px;
+  width: auto;
+  max-width: 180px;
+  border-radius: 12px;
   object-fit: contain;
   border: 2px solid rgba(255, 255, 255, 0.18);
   background: rgba(255, 255, 255, 0.08);
+  padding: 4px;
 }
 
 .logo-copy {
