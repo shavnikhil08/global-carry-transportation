@@ -2,8 +2,11 @@
   <div class="container nav-container">
     <!-- Logo -->
     <a routerLink="/" class="logo">
-      <span class="material-symbols-outlined logo-icon">local_shipping</span>
-      <span class="logo-text">Global <span class="highlight">Carry </span>Transportation</span>
+      <img src="/images/Company_Logo.jpeg" alt="Global Carry Transportation Logo" class="brand-logo" />
+      <div class="logo-copy">
+        <span class="logo-text">Global <span class="highlight">Carry </span>Transportation</span>
+        <span class="brand-subtitle">Freight, Air, Rail & Heavy Transport</span>
+      </div>
     </a>
 
     <!-- Desktop Navigation -->
@@ -29,6 +32,12 @@
         {{ isMenuOpen() ? 'close' : 'menu' }}
       </span>
     </button>
+  </div>
+
+  <div class="header-flags">
+    <span class="flag-pill" role="img" aria-label="United States">🇺🇸 United States</span>
+    <span class="flag-pill" role="img" aria-label="Canada">🇨🇦 Canada</span>
+    <span class="flag-pill" role="img" aria-label="Australia">🇦🇺 Australia</span>
   </div>
 
   <!-- Mobile Dropdown Navigation -->

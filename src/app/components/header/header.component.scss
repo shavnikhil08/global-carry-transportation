@@ -13,26 +13,46 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  flex-wrap: wrap;
+  gap: 16px;
+  min-height: 100px;
+  padding: 16px 0;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 22px;
+  gap: 14px;
   font-weight: 800;
   font-family: 'Outfit', sans-serif;
   letter-spacing: -0.5px;
 }
 
-.logo-icon {
-  font-size: 32px;
-  color: var(--border-focus);
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  object-fit: contain;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.logo-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .logo-text {
   color: #ffffff;
+  font-size: 20px;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: #cbd5e1;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
 }
 
 .highlight {
@@ -43,6 +63,28 @@
   display: flex;
   align-items: center;
   gap: 32px;
+  margin-left: auto;
+}
+
+.header-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.flag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #f8fafc;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .desktop-nav a {

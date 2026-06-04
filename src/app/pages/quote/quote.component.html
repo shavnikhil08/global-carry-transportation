@@ -172,6 +172,66 @@
                       </div>
                     </div>
 
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceCarHauler')?.value" (click)="toggleService('serviceCarHauler')">
+                      <span class="material-symbols-outlined select-icon">directions_car</span>
+                      <div class="select-card-details">
+                        <h4>Car Hauler Services</h4>
+                        <p>Enclosed and open car hauling for dealerships and auctions.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceCarHauler')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceGooseneck')?.value" (click)="toggleService('serviceGooseneck')">
+                      <span class="material-symbols-outlined select-icon">anchor</span>
+                      <div class="select-card-details">
+                        <h4>Gooseneck & Heavy Equipment</h4>
+                        <p>Transport solutions for heavy equipment and oversized loads.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceGooseneck')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceAirCargo')?.value" (click)="toggleService('serviceAirCargo')">
+                      <span class="material-symbols-outlined select-icon">airplanemode_active</span>
+                      <div class="select-card-details">
+                        <h4>Air Cargo</h4>
+                        <p>Express air freight options for time-sensitive shipments.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceAirCargo')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
+                    <div class="service-select-card" [class.selected]="quoteForm.get('serviceRail')?.value" (click)="toggleService('serviceRail')">
+                      <span class="material-symbols-outlined select-icon">train</span>
+                      <div class="select-card-details">
+                        <h4>Rail Partnerships (CP & CN)</h4>
+                        <p>Integrated intermodal rail solutions through CP and CN partnerships.</p>
+                      </div>
+                      <div class="checkbox-indicator">
+                        @if (quoteForm.get('serviceRail')?.value) {
+                          <span class="material-symbols-outlined check-active">check_circle</span>
+                        } @else {
+                          <span class="checkbox-blank"></span>
+                        }
+                      </div>
+                    </div>
+
                   </div>
 
                   @if (isNoServicesSelected()) {

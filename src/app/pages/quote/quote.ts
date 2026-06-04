@@ -43,6 +43,10 @@ export class QuoteComponent {
       serviceStepDeck: [false],
       serviceFlatbed: [false],
       serviceConestoga: [false],
+      serviceCarHauler: [false],
+      serviceGooseneck: [false],
+      serviceAirCargo: [false],
+      serviceRail: [false],
 
       // Cargo Specs & Origin/Destination
       originCity: ['', Validators.required],
@@ -96,7 +100,11 @@ export class QuoteComponent {
     const sd = this.quoteForm.get('serviceStepDeck')?.value;
     const fb = this.quoteForm.get('serviceFlatbed')?.value;
     const c = this.quoteForm.get('serviceConestoga')?.value;
-    return !f && !r && !sd && !fb && !c;
+    const ch = this.quoteForm.get('serviceCarHauler')?.value;
+    const gn = this.quoteForm.get('serviceGooseneck')?.value;
+    const ac = this.quoteForm.get('serviceAirCargo')?.value;
+    const rl = this.quoteForm.get('serviceRail')?.value;
+    return !f && !r && !sd && !fb && !c && !ch && !gn && !ac && !rl;
   }
 
   hasFieldError(fieldName: string): boolean {
@@ -141,6 +149,10 @@ export class QuoteComponent {
     if (this.quoteForm.value.serviceStepDeck) svcs.push('Step Deck');
     if (this.quoteForm.value.serviceFlatbed) svcs.push('Flatbed');
     if (this.quoteForm.value.serviceConestoga) svcs.push('Conestoga');
+    if (this.quoteForm.value.serviceCarHauler) svcs.push('Car Hauler');
+    if (this.quoteForm.value.serviceGooseneck) svcs.push('Gooseneck / Heavy Equipment');
+    if (this.quoteForm.value.serviceAirCargo) svcs.push('Air Cargo');
+    if (this.quoteForm.value.serviceRail) svcs.push('Rail (CP/CN)');
 
     const newQuote: QuoteRequest = {
       refNumber: ref,
@@ -203,6 +215,10 @@ export class QuoteComponent {
       serviceStepDeck: false,
       serviceFlatbed: false,
       serviceConestoga: false,
+      serviceCarHauler: false,
+      serviceGooseneck: false,
+      serviceAirCargo: false,
+      serviceRail: false,
       originCity: '',
       destinationCity: '',
       cargoWeight: '',
