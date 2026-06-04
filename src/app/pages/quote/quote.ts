@@ -19,6 +19,7 @@ interface QuoteRequest {
 
 @Component({
   selector: 'app-quote',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './quote.component.html',
   styleUrl: './quote.component.scss'
