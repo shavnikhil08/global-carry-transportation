@@ -172,7 +172,7 @@ export class QuoteComponent {
     try {
       // NOTE: Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_PUBLIC_KEY' with your actual EmailJS credentials
       await emailjs.send(
-        'service_mjgqlu6',
+        'service_864obye',
         'template_fxgqpup',
         {
           ref_number: newQuote.refNumber,
