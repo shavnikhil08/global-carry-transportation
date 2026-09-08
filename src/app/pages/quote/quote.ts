@@ -172,8 +172,8 @@ export class QuoteComponent {
     try {
       // NOTE: Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_PUBLIC_KEY' with your actual EmailJS credentials
       await emailjs.send(
-        'service_864obye',
-        'template_fxgqpup',
+        'service_2xn0024',
+        'template_dam1nfx',
         {
           ref_number: newQuote.refNumber,
           to_name: newQuote.name,
@@ -187,7 +187,7 @@ export class QuoteComponent {
           cargo_type: newQuote.cargoType,
           cargo_description: this.quoteForm.value.cargoDescription || 'None provided'
         },
-        '9bYq49Wsp1dOKRKWC'
+        'NjiF3fQmR-HluLi6D'
       );
 
       // Save to localStorage
