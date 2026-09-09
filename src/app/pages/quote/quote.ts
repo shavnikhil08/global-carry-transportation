@@ -2,6 +2,7 @@ import { Component, signal, computed } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import emailjs from '@emailjs/browser';
 import { ToastrService } from 'ngx-toastr';
+import { EmailConfig } from '../../config/email.config';
 
 interface QuoteRequest {
   refNumber: string;
@@ -140,7 +141,7 @@ export class QuoteComponent {
 
     this.currentStep.set('submitting');
 
-    const ref = 'NK-Q-' + Math.floor(100000 + Math.random() * 900000);
+    const ref = 'GC-Q-' + Math.floor(100000 + Math.random() * 900000);
     this.generatedRef.set(ref);
 
     // Collect services
@@ -170,10 +171,14 @@ export class QuoteComponent {
     };
 
     try {
-      // NOTE: Replace 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', and 'YOUR_PUBLIC_KEY' with your actual EmailJS credentials
+      // Use global EmailConfig or fallback to specific ones if defined
+      const serviceId = EmailConfig.defaultServiceId;
+      const templateId = EmailConfig.templates.quote;
+      const publicKey = EmailConfig.defaultPublicKey;
+
       await emailjs.send(
-        'service_2xn0024',
-        'template_dam1nfx',
+        serviceId,
+        templateId,
         {
           ref_number: newQuote.refNumber,
           to_name: newQuote.name,
@@ -187,13 +192,13 @@ export class QuoteComponent {
           cargo_type: newQuote.cargoType,
           cargo_description: this.quoteForm.value.cargoDescription || 'None provided'
         },
-        'NjiF3fQmR-HluLi6D'
+        publicKey
       );
 
       // Save to localStorage
       const existing = this.getQuotesFromStorage();
       existing.unshift(newQuote);
-      localStorage.setItem('nikhil_quotes', JSON.stringify(existing));
+      localStorage.setItem('gc_quotes', JSON.stringify(existing));
       this.savedQuotes.set(existing);
 
       this.toastr.success('Your quote has been submitted! Our team will reach you within 15 minutes.', 'Quote Sent!');
@@ -236,7 +241,7 @@ export class QuoteComponent {
 
   private getQuotesFromStorage(): QuoteRequest[] {
     try {
-      const stored = localStorage.getItem('nikhil_quotes');
+      const stored = localStorage.getItem('gc_quotes');
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
@@ -244,7 +249,7 @@ export class QuoteComponent {
   }
 
   clearSavedQuotes() {
-    localStorage.removeItem('nikhil_quotes');
+    localStorage.removeItem('gc_quotes');
     this.savedQuotes.set([]);
   }
 }

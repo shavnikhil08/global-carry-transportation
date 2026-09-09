@@ -1,0 +1,55 @@
+<section class="career-section">
+  <div class="container">
+    <div class="header-text">
+      <h2>Join Our Team</h2>
+      <p>We are always looking for talented individuals to join our growing team.</p>
+    </div>
+
+    <div class="form-wrapper">
+      <form [formGroup]="careerForm" #careerFormEl (ngSubmit)="submitApplication(careerFormEl)" class="career-form">
+        
+        <div class="form-group">
+          <label for="fullName">Full Name *</label>
+          <input type="text" id="fullName" formControlName="fullName" name="user_name" placeholder="Enter your full name">
+          <span class="error" *ngIf="hasFieldError('fullName')">Full name is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="email" id="email" formControlName="email" name="user_email" placeholder="Enter your email">
+          <span class="error" *ngIf="hasFieldError('email')">Valid email is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number *</label>
+          <input type="text" id="phone" formControlName="phone" name="user_phone" placeholder="Enter your phone number">
+          <span class="error" *ngIf="hasFieldError('phone')">Phone number is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="position">Position Applying For *</label>
+          <select id="position" formControlName="position" name="position">
+            <option value="" disabled selected>Select a position</option>
+            <option *ngFor="let pos of positions" [value]="pos">{{pos}}</option>
+          </select>
+          <span class="error" *ngIf="hasFieldError('position')">Please select a position.</span>
+        </div>
+
+        <div class="resume-instructions">
+          <strong>Important:</strong> After submitting this application, please email your resume directly to 
+          <a href="mailto:globalcarrytransportation@gmail.com">globalcarrytransportation&#64;gmail.com</a>.
+        </div>
+
+        <div class="form-group">
+          <label for="details">Additional Details</label>
+          <textarea id="details" formControlName="details" name="message" rows="4" placeholder="Tell us more about your experience..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" [disabled]="isSubmitting()">
+          {{ isSubmitting() ? 'Submitting...' : 'Apply Now' }}
+        </button>
+        
+      </form>
+    </div>
+  </div>
+</section>

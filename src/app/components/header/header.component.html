@@ -6,6 +6,11 @@
       <div class="logo-copy">
         <span class="logo-text">Global <span class="highlight">Carry </span>Transportation</span>
         <span class="brand-subtitle">Freight, Air, Rail & Heavy Transport</span>
+        <div class="header-flags-inline">
+          <span class="flag-pill-sm" role="img" aria-label="United States">🇺🇸 US</span>
+          <span class="flag-pill-sm" role="img" aria-label="Canada">🇨🇦 CA</span>
+          <span class="flag-pill-sm" role="img" aria-label="Australia">🇦🇺 AU</span>
+        </div>
       </div>
     </a>
 
@@ -14,6 +19,7 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
       <a routerLink="/about" routerLinkActive="active">About Us</a>
       <a routerLink="/services" routerLinkActive="active">Services</a>
+      <a routerLink="/career" routerLinkActive="active">Career</a>
       <a routerLink="/quote" routerLinkActive="active">Request a Quote</a>
       <a routerLink="/contact" routerLinkActive="active">Contact Us</a>
     </nav>
@@ -34,11 +40,7 @@
     </button>
   </div>
 
-  <div class="header-flags">
-    <span class="flag-pill" role="img" aria-label="United States">🇺🇸 United States</span>
-    <span class="flag-pill" role="img" aria-label="Canada">🇨🇦 Canada</span>
-    <span class="flag-pill" role="img" aria-label="Australia">🇦🇺 Australia</span>
-  </div>
+
 
   <!-- Mobile Dropdown Navigation -->
   @if (isMenuOpen()) {
@@ -46,6 +48,7 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a>
       <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About Us</a>
       <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">Services</a>
+      <a routerLink="/career" routerLinkActive="active" (click)="closeMenu()">Career</a>
       <a routerLink="/quote" routerLinkActive="active" (click)="closeMenu()">Request a Quote</a>
       <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact Us</a>
       <a routerLink="/quote" class="mobile-nav-btn" (click)="closeMenu()">Get a Quote</a>

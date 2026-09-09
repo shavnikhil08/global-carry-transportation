@@ -11,5 +11,5 @@ import { FooterComponent } from './components/footer';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('nikhil-transport-ui');
+  protected readonly title = signal('global-carry-transportation-ui');
 }

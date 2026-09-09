@@ -15,8 +15,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  min-height: 100px;
-  padding: 16px 0;
+  min-height: 70px;
+  padding: 10px 0;
 }
 
 .logo {
@@ -87,6 +87,27 @@
   color: #f8fafc;
   font-size: 13px;
   font-weight: 600;
+}
+
+.header-flags-inline {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+
+.flag-pill-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  color: #cbd5e1;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .desktop-nav a {
